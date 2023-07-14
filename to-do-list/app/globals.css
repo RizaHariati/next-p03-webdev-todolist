@@ -3,27 +3,29 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --foreground-rgb: 255, 255, 255;
-      --background-start-rgb: 0, 0, 0;
-      --background-end-rgb: 0, 0, 0;
-    }
-  }
-
   body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgb(var(--background-end-rgb))
-      )
-      rgb(var(--background-start-rgb));
+    @apply text-slate-100 bg-gradient-to-b from-slate-800 to-slate-700;
+  }
+  h1 {
+    @apply text-2xl capitalize;
+  }
+  h2 {
+    @apply text-xl capitalize;
+  }
+}
+
+@layer components {
+  .header-btn {
+    @apply uppercase border-2 border-slate-100 rounded-md hover:border-slate-400 p-1 px-3 hover:text-slate-400  transition-all;
+  }
+  .todo-form {
+    @apply w-full flex flex-col items-end max-w-md  gap-2 mx-auto;
+  }
+
+  .todo-input {
+    @apply w-full h-12 rounded-md text-slate-800 px-2;
+  }
+  .label-class {
+    @apply capitalize text-lg ml-4 peer-checked:line-through peer-checked:text-red-300 cursor-pointer;
   }
 }
