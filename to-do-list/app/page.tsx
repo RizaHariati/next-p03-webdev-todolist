@@ -1,12 +1,22 @@
 import { getTodo } from "@/lib/getTodo";
 import Header from "./components/Header";
-import { TodoType } from "@/type";
+
 import { prisma } from "./db";
 import Todos from "./components/Todos";
 
 export default async function Home() {
   const todos = await getTodo();
-  const toggleTodo = (id: string, checked: boolean) => {
+  const toggleTodo = async (id: string, checked: boolean) => {
+    "use server";
+    const updateUser = await prisma.todo.update({
+      where: {
+        id,
+      },
+      data: {
+        complete: checked.valueOf(),
+      },
+    });
+    console.log(updateUser);
     return;
   };
 

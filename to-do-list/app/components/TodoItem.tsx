@@ -1,7 +1,7 @@
 "use client";
+
 import { deleteTodo } from "@/lib/deleteTodo";
 import { TodoType } from "@/type";
-import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
 
 type Props = {
@@ -11,17 +11,21 @@ type Props = {
 
 const TodoItem = ({ todo, toggleTodo }: Props) => {
   const { id, title, complete } = todo;
-  const [completing, setcompleting] = useState<boolean>(complete);
 
   return (
-    <li key={id + title} className=" flex items-center jsustify-between">
+    <li
+      key={id + title}
+      className=" flex items-center justify-between w-full bg-purple-600 max-w-2xl"
+    >
       <div>
         <input
           id={id}
           type="checkbox"
+          defaultChecked={complete}
           className="w-8 h-8 rounded-md  cursor-pointer peer checked:accent-zinc-700 "
           onChange={(e) => {
             toggleTodo(id, e.target.checked);
+            return;
           }}
         />
         <label htmlFor={id} className="label-class">
